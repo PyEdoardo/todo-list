@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo List</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Minha ToDo List</h1>
+
+<div>
+  <form action="/todos" method="post">
+    <input type="text" name="task" placeholder="Adicionar nova tarefa" required>
+    <button type="submit">Adicionar</button>
+  </form>
+</div>
+
+<ul>
+  <li th:each="todo : ${todos}">
+    <span th:text="${todo.description}"></span>
+    <button th:onclick="'/todos/' + ${todo.id} + '/delete'">Excluir</button>
+  </li>
+</ul>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
