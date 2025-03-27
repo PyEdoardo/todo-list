@@ -12,7 +12,22 @@
 
         <div class="input-container">
             <input type="text" id="taskInput" placeholder="Adicione uma nova tarefa: ">
+            <button id="addButton">Adicionar</button>
         </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="active">Pendentes</button>
+            <button class="filter-btn" data-filter="completed">Concluídas</button>
+        </div>
+
+        <ul id="taskList"></ul>
+
+        <div class="stats">
+            <span id="taskCount">0 tarefas restantes</span>
+        </div>
+
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
