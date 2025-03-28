@@ -1,42 +1,18 @@
 package com.todolist.TodoListAPI.controller;
 
-import com.todolist.TodoListAPI.service.AuthService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@RestController
-@RequestMapping("/api/auth")
+@Controller
 public class AuthController {
-
-    @Autowired
-    private AuthService authService;
-
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        boolean isAuthenticated = authService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
-
-        if (isAuthenticated) {
-            return ResponseEntity.ok("Login bem-sucedido!");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
-        }
-    }
-
-    @PostMapping("/register")
-    public String registerUser(@RequestParam("username") String username,
-                               @RequestParam("password") String password) {
-        authService.createUser(username, password);
-
-        return "redirect:/login";
-    }
 
     @GetMapping("/register")
     public String showRegistrationForm() {
-        return "register"; // Retorna o formulário de registro
+        return "register"; // Correspondente ao arquivo src/main/resources/templates/register.html
+    }
+
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login"; // Correspondente ao arquivo src/main/resources/templates/login.html
     }
 }
